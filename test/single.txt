@@ -1,0 +1,153 @@
+fCutV0sLambdaProtonNumTPCSigmaMax: (Float_t) 3 (n*sigma)
+=====================================================================
+
+############# After UserCreateOutputObjects()
+
+Object statistics
+class                         cnt    on heap     size    total size    heap size
+================================================================================
+ROOT::TSchemaRule              14         14      304          4256         4256
+TVirtualX                       1          1      144           144          144
+TGlobal                       176        176       88         15488        15488
+AliTOFPIDResponse               1          1      224           224          224
+TStreamerInfoActions::TConfiguredAction     1027          0       32         32864            0
+TBenchmark                      1          1      104           104          104
+ROOT::TSchemaRule::TSources        9          9       88           792          792
+TDatabasePDG                    1          1       88            88           88
+TH1D                          168        168     1000        168000       168000
+TH2D                           88         88     1032         90816        90816
+TList                       10949      10946       80        875920       875680
+TAxis                         952        952      216        205632       205632
+TH3D                           14         14     1064         14896        14896
+TGFontPool                      1          1       56            56           56
+TImagePalette                   2          2       64           128          128
+AliEventCuts                    1          1     1000          1000         1000
+AliAnalysisSelector             1          1       96            96           96
+TObjectTable                    1          1       32            32           32
+TROOT                           1          0      664           664            0
+TStreamerBase                  42         42      264         11088        11088
+TPluginManager                  1          1       40            40           40
+TFileHandler                    1          1       56            56           56
+TObject                       106        106       16          1696         1696
+THnSparseT<TArrayD>             4          4      432          1728         1728
+TStreamerInfo                  49         49      216         10584        10584
+TFormula                       10         10      376          3760         3760
+TFile                           1          1      848           848          848
+AliESDtrackCuts                 6          6      880          5280         5280
+THashTable                   3581       3581       72        257832       257832
+TClassTable                     1          1       16            16           16
+AliMultInput                    1          1       80            80           80
+TStreamerString                15         15      184          2760         2760
+TGFrame                         1          1      176           176          176
+TGResourcePool                  1          1      400           400          400
+TGFont                          4          4     1456          5824         5824
+TProfile2D                      8          8     1128          9024         9024
+TVectorT<float>                 1          1       56            56           56
+TDecayChannel                4173       4173       56        233688       233688
+TRandom3                        2          2     2576          5152         5152
+TListOfDataMembers             92         92      128         11776        11776
+THashList                    1894       1894       88        166672       166672
+TEnum                         333        333      208         69264        69264
+AliESDV0Params                  1          0      360           360            0
+AliAnalysisUtils                2          2       88           176          176
+AliTRDPIDResponse               1          1      120           120          120
+TUrl                            2          1      272           544          272
+TGuiFactory                     1          1       64            64           64
+TPosixThreadFactory             1          0       64            64            0
+TProcessID                      1          1       88            88           88
+TObjString                    309        309       40         12360        12360
+TEnv                            2          2       56           112          112
+AliAODInputHandler              1          1      288           288          288
+TStreamerSTL                    3          3      192           576          576
+TStreamerObject                 4          4      184           736          736
+TVector2                        1          1       32            32           32
+AliMultSelectionTask            1          1     1800          1800         1800
+TListOfEnums                 1452       1452      128        185856       185856
+TEnvRec                     16821      16821       96       1614816      1614816
+TClass                        172        172      496         85312        85312
+TInterpreter                    1          1       64            64           64
+TRealData                    3452       3452       72        248544       248544
+TQClass                         9          9      528          4752         4752
+TFolder                        19         19       80          1520         1520
+AliAnalysisDataContainer       17         17      160          2720         2720
+AliLog                          1          1      576           576          576
+TRint                           1          1      296           296          296
+TGGCPool                        1          1       40            40           40
+TDataMember                 21908      21908      264       5783712      5783712
+TH2F                           10         10     1032         10320        10320
+TNamed                        397        397       64         25408        25408
+AliEventCutsContainer           1          1      104           104          104
+TMap                            3          2       56           168          112
+AliPhysicsSelectionTask         1          1      336           336          336
+TChain                          1          1      760           760          760
+TMessageHandler                 1          1      144           144          144
+TGeoHMatrix                     7          7      184          1288         1288
+TChainElement                   1          1      152           152          152
+TSelectorDraw                   1          1      272           272          272
+TStreamerSTLstring              2          2      192           384          384
+ROOT::Detail::TSchemaRuleSet       10         10      104          1040         1040
+AliHMPIDPIDResponse             1          1      208           208          208
+AliAnalysisTaskPIDResponse        1          1      448           448          448
+TParticlePDG                  523        523      216        112968       112968
+TObjArray                     785        782       64         50240        50048
+TStreamerInfoActions::TActionSequence      259        259       56         14504        14504
+TStreamerBasicType             91         91      192         17472        17472
+TVector3                        1          1       40            40           40
+TGMimeTypes                     1          1       64            64           64
+AliEMCALPIDResponse             1          1       40            40           40
+TProfile                       21         21     1096         23016        23016
+TOrdCollection                  8          8       72           576          576
+AliAnalysisDataSlot            26         26       88          2288         2288
+TSignalHandler                  1          1       56            56           56
+TBits                           1          1       32            32           32
+TStreamerBasicPointer           4          4      248           992          992
+TProtoClass                  1460       1460      192        280320       280320
+AliAnalysisTaskUniFlow          1          1     9144          9144         9144
+TMethod                       249        249      200         49800        49800
+TMacOSXSystem                   1          1      664           664          664
+TGGC                           12         12      184          2208         2208
+AliMultVariable                58         58       80          4640         4640
+TStopwatch                      3          3       72           216          216
+AliPhysicsSelection             1          1      480           480          480
+TExMap                       1624       1624       32         51968        51968
+TStreamerObjectAny              9          9      184          1656         1656
+TTreePlayer                     1          1      112           112          112
+TListOfEnumsWithLock           14         14      128          1792         1792
+TColor                        598        598       96         57408        57408
+TGPicturePool                   1          1       56            56           56
+TDataType                      28         28      136          3808         3808
+AliPIDCombined                  1          1      160           160          160
+TPluginHandler                 27         27      184          4968         4968
+TParticleClassPDG              13         13       72           936          936
+TStyle                          7          7     1496         10472        10472
+AliAODpidUtil                   1          1     2056          2056         2056
+AliOADBContainer                1          1      144           144          144
+AliITSPIDResponse               1          1      472           472          472
+TStreamerObjectPointer         14         14      184          2576         2576
+TKey                           50         50      184          9200         9200
+TSelectorList                   2          2       88           176          176
+TSystemDirectory                1          1      104           104          104
+TGClient                        1          1      248           248          248
+AliTPCPIDResponse               1          1      488           488          488
+TListOfFunctions               57         57      192         10944        10944
+TEnumConstant                2355       2355      104        244920       244920
+TF1                             5          5      448          2240         2240
+TBaseClass                   1478       1478      144        212832       212832
+AliAnalysisManager              1          1      544           544          544
+TOptionListItem              3861       3861       96        370656       370656
+TProfile3D                      3          3     1160          3480         3480
+TMethodCall                     8          8      128          1024         1024
+TProcessUUID                    1          1      104           104          104
+--------------------------------------------------------------------------------
+Total:                      82027      80989    49456      11760864     11726152
+================================================================================
+
+Initialization time: 9.16329 [sec]
+I-AliPhysicsSelectionTask::ConnectInputData: fInputHandler: 0x7fd38c7bc5f0
+I-AliMultSelectionTask::ConnectInputData: fInputHandler: 0x7fd38c7bc5f0
+I-AliAnalysisTaskPIDResponse::ConnectInputData: fInputHandler: 0x7fd38c7bc5f0
+I-AliAnalysisTaskUniFlow::ConnectInputData: fInputHandler: 0x7fd38c7bc5f0
+E-AliAnalysisManager::GetRunFromAlienPath: Invalid AliEn path string
+I-AliAODInputHandler::Notify: Moving to file /Users/vpacik/Codes/ALICE/Flow/data/2016/LHC16l/000259888/pass1/AOD/001/AliAOD.root
+Processing event     [\         ]    0 [  0.00 %]   TIME 00:00:00  ETA 99:59:58
+I-A
