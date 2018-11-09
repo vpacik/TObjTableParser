@@ -1,5 +1,7 @@
+################################################################################
 def process_line(line) :
     """
+    Process a single 'line' of TObjTable output and returns it as a single tuple.
     """
     # print(line,end='')
     newline = line.split()
@@ -13,8 +15,12 @@ def process_line(line) :
     sizeHeap = int(newline[5])
 
     return (object, countTot, countHeap, sizeSingle, sizeTot, sizeHeap)
-
+################################################################################
 def check_start(line,file) :
+    """
+    Checks if current (and few subsequent) 'line' in input 'file' is start of TObjTable output.
+    Return True if so, False otherwise.
+    """
     if not line.startswith('Object statistics') :
         return False
 
@@ -27,8 +33,12 @@ def check_start(line,file) :
         return False
 
     return True
-
+################################################################################
 def check_end(line,file) :
+    """
+    Checks if current (and few subsequent) 'line' in input 'file' is end of TObjTable output.
+    Returns True if so, False othrewise.
+    """
     if not line.startswith('-------') :
         return False
 
@@ -41,13 +51,15 @@ def check_end(line,file) :
         return False
 
     return True
-
+################################################################################
 def parse_file(filepath) :
     """
+    Takes a single file and parse it looking for TObjTable contents.
+    Each TObjTable output (instance) is processed into single list of tuples.
+    Returns a list (of lists) of parsed TObjTable instances (represented as a list).
     """
 
     print("=====  Parsing file content  ======================================")
-    print
 
     with open(filepath, 'r') as file :
         within = False
@@ -88,9 +100,11 @@ def parse_file(filepath) :
 
     return listInstances
 
+################################################################################
+
 print("=== Parser ===")
-# filepath = "test/single.txt"
-filepath = "test/out"
+filepath = "test/single.txt"
+# filepath = "test/out"
 instances = parse_file(filepath)
 
 print("Parsing finished!")
