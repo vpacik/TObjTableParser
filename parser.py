@@ -1,3 +1,4 @@
+
 ################################################################################
 def process_line(line) :
     """
@@ -55,8 +56,8 @@ def check_end(line,file) :
 def parse_file(filepath) :
     """
     Takes a single file and parse it looking for TObjTable contents.
-    Each TObjTable output (instance) is processed into single list of tuples.
-    Returns a list (of lists) of parsed TObjTable instances (represented as a list).
+    Each TObjTable output (instance) is processed into single dictionary.
+    Returns a list (of dictionaries) of parsed TObjTable instances.
     """
 
     print("=====  Parsing file content  ======================================")
@@ -71,7 +72,7 @@ def parse_file(filepath) :
                 if check_start(line,file) :
                     print(' --- Start found!')
                     within = True
-                    newInstance = list()
+                    newInstance = dict()
                     line = next(file)
 
             if within :
@@ -84,7 +85,7 @@ def parse_file(filepath) :
             if within :
                 obj = process_line(line)
                 print(obj)
-                newInstance.append(obj)
+                newInstance[obj[0]] = obj[1:]
 
             line = next(file,None)
 
@@ -110,6 +111,7 @@ instances = parse_file(filepath)
 print("Parsing finished!")
 print(len(instances))
 
-print(instances[0][0][1])
+# print(instances[0]['TFile'])
+# print(instances[0].keys())
 
 print("Done");
