@@ -104,7 +104,19 @@ def parse_file(filepath) :
     return listInstances
 
 ################################################################################
+def print_inst(instance) :
+    """
+    Print out content of TObjectTable instance in 'user-friendly' way
+    """
 
+    print("=====  Printing instance with %d entries ============================================" % len(instance))
+
+    for keys,values in  instance.items() :
+        print(values)
+
+    print("=====================================================================")
+
+################################################################################
 print("=== Parser ===")
 filepath = "test/single.txt"
 # filepath = "test/out"
@@ -117,7 +129,8 @@ print("Found %d instance(s)" % len(instances))
 
 firstInst = instances[0];
 print("Printing first instance with %d entries" % len(firstInst))
-print(firstInst)
+# print(firstInst)
+print_inst(firstInst)
 
 print("Printing TFile TObject")
 firstObj = firstInst['TFile'];
