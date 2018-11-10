@@ -1,12 +1,13 @@
+from collections import namedtuple
+
+TObject = namedtuple("TObject", ['object','countTot','countHeap','sizeSingle','sizeTot','sizeHeap'] ,verbose=False)
 
 ################################################################################
 def process_line(line) :
     """
     Process a single 'line' of TObjTable output and returns it as a single tuple.
     """
-    # print(line,end='')
     newline = line.split()
-    # print(newline)
 
     object = str(newline[0])
     countTot = int(newline[1])
@@ -15,7 +16,7 @@ def process_line(line) :
     sizeTot = int(newline[4])
     sizeHeap = int(newline[5])
 
-    return (object, countTot, countHeap, sizeSingle, sizeTot, sizeHeap)
+    return TObject(object=object,countTot=countTot, countHeap=countHeap, sizeSingle=sizeSingle, sizeTot=sizeTot, sizeHeap=sizeHeap)
 ################################################################################
 def check_start(line,file) :
     """
@@ -84,8 +85,9 @@ def parse_file(filepath) :
 
             if within :
                 obj = process_line(line)
-                print(obj)
-                newInstance[obj[0]] = obj[1:]
+                newInstance[obj.object] = obj
+                # print(line,end='')
+                # print(obj)
 
             line = next(file,None)
 
@@ -109,8 +111,22 @@ filepath = "test/single.txt"
 instances = parse_file(filepath)
 
 print("Parsing finished!")
-print(len(instances))
+print("Found %d instance(s)" % len(instances))
 
+# print(instances)
+
+firstInst = instances[0];
+print("Printing first instance with %d entries" % len(firstInst))
+print(firstInst)
+
+print("Printing TFile TObject")
+firstObj = firstInst['TFile'];
+print(firstObj)
+print(firstObj.object)
+print(firstObj.sizeHeap)
+
+
+print();
 # print(instances[0]['TFile'])
 # print(instances[0].keys())
 
