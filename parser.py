@@ -99,7 +99,7 @@ def parse_file(filepath,stats=False) :
             line = next(file,None)
 
         print("=====  Parsing finised! ", end='')
-        print("Found %d instance(s) " % len(listInstances), end='')
+        print("Found %d instance(s) " % len(listInstances))
         if stats :
             for i,ins in enumerate(listInstances) :
                 print("Instance %d (entries %d) : " %(i,len(ins)), end='');
