@@ -44,17 +44,19 @@ def check_end(line,file) :
     Returns True if so, False othrewise.
     """
     if not line.startswith('-------') :
-        return False
+        return False, 0
 
     line = next(file)
     if not line.startswith('Total:') :
-        return False
+        return False, 0
+
+    obj = process_line(line)
 
     line = next(file)
     if not line.startswith('=======') :
-        return False
+        return False, 0
 
-    return True
+    return True, obj
 ################################################################################
 def parse_file(filepath) :
     """
@@ -79,9 +81,11 @@ def parse_file(filepath) :
                     line = next(file)
 
             if within :
-                if check_end(line,file) :
+                is_end, obj = check_end(line,file)
+                if is_end :
                     if gDebug : print(' --- End found!')
                     within = False
+                    newInstance['Total'] = obj
                     listInstances.append(newInstance)
                     line = next(file)
 
