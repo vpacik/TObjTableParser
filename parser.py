@@ -2,6 +2,8 @@ from collections import namedtuple
 
 TObject = namedtuple("TObject", ['object','countTot','countHeap','sizeSingle','sizeTot','sizeHeap'] ,verbose=False)
 
+gDebug = False; # flag for debugging output
+
 ################################################################################
 def process_line(line) :
     """
@@ -61,7 +63,7 @@ def parse_file(filepath) :
     Returns a list (of dictionaries) of parsed TObjTable instances.
     """
 
-    print("=====  Parsing file content  ======================================")
+    print("=====  Parsing file '%s' content  ======================================" % str(filepath))
 
     with open(filepath, 'r') as file :
         within = False
@@ -71,14 +73,14 @@ def parse_file(filepath) :
         while line :
             if not within :
                 if check_start(line,file) :
-                    print(' --- Start found!')
+                    if gDebug : print(' --- Start found!')
                     within = True
                     newInstance = dict()
                     line = next(file)
 
             if within :
                 if check_end(line,file) :
-                    print(' --- End found!')
+                    if gDebug : print(' --- End found!')
                     within = False
                     listInstances.append(newInstance)
                     line = next(file)
@@ -86,20 +88,22 @@ def parse_file(filepath) :
             if within :
                 obj = process_line(line)
                 newInstance[obj.object] = obj
-                # print(line,end='')
-                # print(obj)
+                if gDebug :
+                    print(line,end='')
+                    print(obj)
 
             line = next(file,None)
 
-        print("=====  Parsing finised  =======================================")
-        print("Found %d instances" % len(listInstances))
-        # print(listInstances)
+        print("=====  Parsing finised! ", end='')
+        print("Found %d instance(s)" % len(listInstances), end='')
+        print("=======================================")
 
 
-        print("=====  Instances   ============================================")
-        for i,ins in enumerate(listInstances) :
-            print("\n----- Printing instance %d with %d entries ----------------" % (i,len(ins)))
-            print(ins)
+        if gDebug :
+            print("=====  Instances   ============================================")
+            for i,ins in enumerate(listInstances) :
+                print("\n----- Printing instance (index %d) with %d entries ----------------" % (i,len(ins)))
+                print(ins)
 
     return listInstances
 
@@ -117,30 +121,28 @@ def print_inst(instance) :
     print("=====================================================================")
 
 ################################################################################
+
 print("=== Parser ===")
-filepath = "test/single.txt"
-# filepath = "test/out"
-instances = parse_file(filepath)
+# filepath = "test/single.txt"
+filepath = "test/out"
+# filepath = "test/out_perEvent_10"
+# filepath = "test/out_perEvent_100"
 
-print("Parsing finished!")
-print("Found %d instance(s)" % len(instances))
+instances = parse_file(filepath,stats=True)
 
-# print(instances)
 
-firstInst = instances[0];
-print("Printing first instance with %d entries" % len(firstInst))
+
+# NB : printing first instance
+# firstInst = instances[0];
+# print("Printing first instance with %d entries" % len(firstInst))
 # print(firstInst)
-print_inst(firstInst)
+# print_inst(firstInst)
 
-print("Printing TFile TObject")
-firstObj = firstInst['TFile'];
-print(firstObj)
-print(firstObj.object)
-print(firstObj.sizeHeap)
-
-
-print();
-# print(instances[0]['TFile'])
-# print(instances[0].keys())
+# NB: simple example of search-up
+# print("Printing TFile TObject")
+# firstObj = firstInst['TFile'];
+# print(firstObj)
+# print(firstObj.object)
+# print(firstObj.sizeHeap)
 
 print("Done");
