@@ -58,7 +58,7 @@ def check_end(line,file) :
 
     return True, obj
 ################################################################################
-def parse_file(filepath) :
+def parse_file(filepath,stats=False) :
     """
     Takes a single file and parse it looking for TObjTable contents.
     Each TObjTable output (instance) is processed into single dictionary.
@@ -99,8 +99,12 @@ def parse_file(filepath) :
             line = next(file,None)
 
         print("=====  Parsing finised! ", end='')
-        print("Found %d instance(s)" % len(listInstances), end='')
-        print("=======================================")
+        print("Found %d instance(s) " % len(listInstances), end='')
+        if stats :
+            for i,ins in enumerate(listInstances) :
+                print("Instance %d (entries %d) : " %(i,len(ins)), end='');
+                print(ins['Total'])
+        print("================================================================")
 
 
         if gDebug :
