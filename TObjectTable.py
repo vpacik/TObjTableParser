@@ -59,7 +59,7 @@ class TObjectTable :
         Insert a new key-value pair into a dictionary
         """
         if key in self.inst :
-            raise ValueException("Key '%s' already exists!" % key);
+            raise KeyError("Key '%s' already exists!" % key)
 
         self.inst.__setitem__(key,value)
 
