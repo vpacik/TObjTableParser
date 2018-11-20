@@ -33,3 +33,4 @@
 
 # Folders & specific files
 /test/out*
+/__pycache__
