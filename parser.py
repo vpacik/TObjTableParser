@@ -1,6 +1,5 @@
 from collections import namedtuple
-
-TObject = namedtuple("TObject", ['object','countTot','countHeap','sizeSingle','sizeTot','sizeHeap'] ,verbose=False)
+from TObjectTable import TObjectTable, TObjectEntry
 
 gDebug = False; # flag for debugging output
 
@@ -18,7 +17,7 @@ def process_line(line) :
     sizeTot = int(newline[4])
     sizeHeap = int(newline[5])
 
-    return TObject(object=object,countTot=countTot, countHeap=countHeap, sizeSingle=sizeSingle, sizeTot=sizeTot, sizeHeap=sizeHeap)
+    return TObjectEntry(object=object,countTot=countTot, countHeap=countHeap, sizeSingle=sizeSingle, sizeTot=sizeTot, sizeHeap=sizeHeap)
 ################################################################################
 def check_start(line,file) :
     """
@@ -77,7 +76,7 @@ def parse_file(filepath,stats=False) :
                 if check_start(line,file) :
                     if gDebug : print(' --- Start found!')
                     within = True
-                    newInstance = dict()
+                    newInstance = TObjectTable()
                     line = next(file)
 
             if within :
@@ -85,13 +84,13 @@ def parse_file(filepath,stats=False) :
                 if is_end :
                     if gDebug : print(' --- End found!')
                     within = False
-                    newInstance['Total'] = obj
+                    newInstance.set_summary(obj)
                     listInstances.append(newInstance)
                     line = next(file)
 
             if within :
                 obj = process_line(line)
-                newInstance[obj.object] = obj
+                newInstance.append(obj.object,obj)
                 if gDebug :
                     print(line,end='')
                     print(obj)
@@ -103,7 +102,7 @@ def parse_file(filepath,stats=False) :
         if stats :
             for i,ins in enumerate(listInstances) :
                 print("Instance %d (entries %d) : " %(i,len(ins)), end='');
-                print(ins['Total'])
+                print(ins)
         print("================================================================")
 
 
@@ -114,19 +113,6 @@ def parse_file(filepath,stats=False) :
                 print(ins)
 
     return listInstances
-
-################################################################################
-def print_inst(instance) :
-    """
-    Print out content of TObjectTable instance in 'user-friendly' way
-    """
-
-    print("=====  Printing instance with %d entries ============================================" % len(instance))
-
-    for keys,values in  instance.items() :
-        print(values)
-
-    print("=====================================================================")
 
 ################################################################################
 
