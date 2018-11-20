@@ -139,4 +139,8 @@ instances = parse_file(filepath,stats=True)
 # print(firstObj.object)
 # print(firstObj.sizeHeap)
 
+print("Testing diff")
+first = instances[0]
+second = instances[1]
+first.diff(second)
 print("Done");

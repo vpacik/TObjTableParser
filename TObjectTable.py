@@ -68,3 +68,17 @@ class TObjectTable :
         Add a single TObjectEntry outside of dictionary for summary
         """
         self.total = obj
+
+    def diff(self, table) :
+        """
+        Compares this Table to another one and return new Table containing 'diff' between them.
+        """
+        if not isinstance(table, TObjectTable) :
+            raise TypeError("Not a TObjTable!")
+
+        orig = self.inst
+        latter = table.inst
+
+        # TODO : implement
+
+        return latter
