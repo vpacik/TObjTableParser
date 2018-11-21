@@ -82,6 +82,28 @@ class TObjectTable :
         """
         self.total = obj
 
+    def calc_summary(self) :
+        """
+        Sums individual TObjectEntries to calculate summary object
+        """
+
+        object = 'Total'
+        countTot = 0
+        countHeap = 0
+        sizeTot = 0
+        sizeHeap = 0
+        sizeSingle = 0
+
+        for key,obj in self.inst.items() :
+            countTot += obj.countTot
+            countHeap += obj.countHeap
+            sizeHeap += obj.sizeHeap
+            sizeTot += obj.sizeTot
+            sizeSingle += obj.sizeSingle
+
+        return TObjectEntry(object=object,countTot=countTot,countHeap=countHeap,sizeTot=sizeTot,sizeHeap=sizeHeap,sizeSingle=sizeSingle)
+
+
     def diff(self, table) :
         """
         Compares this Table to another one and return new Table containing 'diff' between them.
