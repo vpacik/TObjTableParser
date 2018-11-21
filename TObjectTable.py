@@ -54,6 +54,13 @@ class TObjectTable :
         """
         return len(self.inst)
 
+    def list(self) :
+        """
+        List all the TObjectEntries in a Table
+        """
+        for key,obj in self.inst.items() :
+            print(obj)
+
     def append(self,key,value) :
         """
         Insert a new key-value pair into a dictionary
