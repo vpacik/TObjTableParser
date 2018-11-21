@@ -1,8 +1,4 @@
-from collections import namedtuple
 from TObjectTable import TObjectTable, TObjectEntry
-
-gDebug = False; # flag for debugging output
-
 ################################################################################
 def process_line(line) :
     """
@@ -57,7 +53,7 @@ def check_end(line,file) :
 
     return True, obj
 ################################################################################
-def parse_file(filepath,stats=False) :
+def parse_file(filepath,stats=False,debug=False) :
     """
     Takes a single file and parse it looking for TObjTable contents.
     Each TObjTable output (instance) is processed into single dictionary.
@@ -74,7 +70,7 @@ def parse_file(filepath,stats=False) :
         while line :
             if not within :
                 if check_start(line,file) :
-                    if gDebug : print(' --- Start found!')
+                    if debug : print(' --- Start found!')
                     within = True
                     newInstance = TObjectTable()
                     line = next(file)
@@ -82,7 +78,7 @@ def parse_file(filepath,stats=False) :
             if within :
                 is_end, obj = check_end(line,file)
                 if is_end :
-                    if gDebug : print(' --- End found!')
+                    if debug : print(' --- End found!')
                     within = False
                     newInstance.set_summary(obj)
                     listInstances.append(newInstance)
@@ -91,7 +87,7 @@ def parse_file(filepath,stats=False) :
             if within :
                 obj = process_line(line)
                 newInstance.append(obj.object,obj)
-                if gDebug :
+                if debug :
                     print(line,end='')
                     print(obj)
 
@@ -106,7 +102,7 @@ def parse_file(filepath,stats=False) :
         print("================================================================")
 
 
-        if gDebug :
+        if debug :
             print("=====  Instances   ============================================")
             for i,ins in enumerate(listInstances) :
                 print("\n----- Printing instance (index %d) with %d entries ----------------" % (i,len(ins)))
@@ -115,28 +111,3 @@ def parse_file(filepath,stats=False) :
     return listInstances
 
 ################################################################################
-
-print("=== Parser ===")
-# filepath = "test/single.txt"
-filepath = "test/out"
-# filepath = "test/out_perEvent_10"
-# filepath = "test/out_perEvent_100"
-
-instances = parse_file(filepath,stats=True)
-
-
-
-# NB : printing first instance
-# firstInst = instances[0];
-# print("Printing first instance with %d entries" % len(firstInst))
-# print(firstInst)
-# print_inst(firstInst)
-
-# NB: simple example of search-up
-# print("Printing TFile TObject")
-# firstObj = firstInst['TFile'];
-# print(firstObj)
-# print(firstObj.object)
-# print(firstObj.sizeHeap)
-
-print("Done");
