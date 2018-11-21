@@ -6,12 +6,39 @@ from collections import namedtuple
 TObjectEntry = namedtuple("TObjectEntry", ['object','countTot','countHeap','sizeSingle','sizeTot','sizeHeap'] ,verbose=False)
 TObjectEntry.__new__.__defaults__ = (0,) * len(TObjectEntry._fields) # defaults setting
 
-"""
-single TObject entry from TObjectTable
-"""
-#class TObjectEntry :
-#    pass
+# ==============================================================================
+def subtract_entries(first, second) :
+    """
+    Take two TObjectEntries of the same 'object' and return new one with difference 'second' - 'first'
+    NB: 'object' & 'sizeSingle' are constant and thus taken from 'second' instance
+    """
 
+    if not isinstance(first, TObjectEntry) :
+        raise TypeError("First is not an TObjectEntry but %s" % type(first))
+
+    if not isinstance(first, TObjectEntry) :
+        raise TypeError("Second is not an TObjectEntry but %s" % type(second))
+
+    if first.object != second.object :
+        raise TypeError("Entries with different 'object' data")
+
+    if first.sizeSingle > 0 :
+        object = first.object
+        sizeSingle = first.sizeSingle
+    elif second.sizeSingle > 0 :
+        object = second.object
+        sizeSingle = second.sizeSingle
+    else :
+        raise TypeError("Both TObjectEntries are empty")
+
+    countTot = second.countTot - first.countTot
+    countHeap = second.countHeap - first.countHeap
+    sizeTot = second.sizeTot - first.sizeTot
+    sizeHeap = second.sizeHeap - first.sizeHeap
+
+    return TObjectEntry(object=object,countTot=countTot,countHeap=countHeap,sizeTot=sizeTot,sizeHeap=sizeHeap,sizeSingle=sizeSingle)
+
+# ==============================================================================
 class TObjectTable :
     """
     Implementation of single instance of TObjectTable
@@ -106,7 +133,11 @@ class TObjectTable :
 
     def diff(self, table) :
         """
-        Compares this Table to another one and return new Table containing 'diff' between them.
+        Compares this Table to another one and return new Table containing (only non-zero-count) 'diff' TObjectEntries between them.
+        Notation for counting: 'table' - 'self', i.e.
+            - zero : when same
+            - negative : when self.count > table.count
+            - positive : when self.count < table.count
         """
         if not isinstance(table, TObjectTable) :
             raise TypeError("Not a TObjTable!")
@@ -114,6 +145,29 @@ class TObjectTable :
         orig = self.inst
         latter = table.inst
 
-        # TODO : implement
+        keys_orig = set(orig.keys())
+        keys_latter = set(latter.keys())
+        # keys_union = keys_orig.union(keys_latter)
+        keys_inter = keys_orig.intersection(keys_latter)
+        keys_diff = keys_latter.symmetric_difference(keys_orig)
 
-        return latter
+        new_table = TObjectTable()
+
+        # looping over intersection of the keys of the two Tables to subtract its entries
+        for key in keys_inter :
+            diff_entry = subtract_entries(self[key],latter[key])
+            new_table.append(diff_entry.object, diff_entry)
+
+        # looping over symmetric difference of the keys of the two Tables to put corresponding entry
+        for key in keys_diff :
+            if key in keys_orig :
+                diff_entry = subtract_entries(orig[key],TObjectEntry(object=str(key)))
+
+            if key in keys_latter :
+                diff_entry = subtract_entries(TObjectEntry(object=str(key)),latter[key])
+
+            new_table.append(diff_entry.object, diff_entry)
+
+        # print(len(new_table))
+        new_table.set_summary(new_table.calc_summary())
+        return new_table
