@@ -9,8 +9,6 @@ filepath = "test/out"
 
 instances = parse_file(filepath,stats=True)
 
-
-
 # NB : printing first instance
 # firstInst = instances[0];
 # print("Printing first instance with %d entries" % len(firstInst))
@@ -23,6 +21,18 @@ instances = parse_file(filepath,stats=True)
 # print(firstObj)
 # print(firstObj.object)
 # print(firstObj.sizeHeap)
+
+
+print("===== Making diffs ===============================")
+diff_instances = []
+
+for i in range(len(instances)-1) :
+    diff_table = instances[i].diff(instances[i+1])
+    diff_instances.append(diff_table)
+    print(diff_table)
+
+print("==================================================")
+
 
 print("Testing diff")
 first = instances[1]
