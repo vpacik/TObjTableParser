@@ -15,23 +15,36 @@ def process_line(line) :
 
     return TObjectEntry(object=object,countTot=countTot, countHeap=countHeap, sizeSingle=sizeSingle, sizeTot=sizeTot, sizeHeap=sizeHeap)
 ################################################################################
-def check_start(line,file) :
+def check_start(line,file,hook=None) :
     """
     Checks if current (and few subsequent) 'line' in input 'file' is start of TObjTable output.
     Return True if so, False otherwise.
+
+    -   if 'hook' is specified it firstly look for a line starting with 'hook'
+        followed by standard TObjTable output.
+        Also returns a whole 'hook' line as second value
     """
+    note = None
+
+    if hook is not None :
+        if not line.startswith(str(hook)) :
+            return False, None
+
+        note = line.strip()
+        line = next(file)
+
     if not line.startswith('Object statistics') :
-        return False
+        return False, None
 
     line = next(file)
     if not line.startswith('class') :
-        return False
+        return False, None
 
     line = next(file)
     if not line.startswith('======') :
-        return False
+        return False, None
 
-    return True
+    return True, note
 ################################################################################
 def check_end(line,file) :
     """
@@ -53,11 +66,11 @@ def check_end(line,file) :
 
     return True, obj
 ################################################################################
-def parse_file(filepath,stats=False,debug=False) :
+def parse_file(filepath,stats=False,hook=None,debug=False) :
     """
     Takes a single file and parse it looking for TObjTable contents.
-    Each TObjTable output (instance) is processed into single dictionary.
-    Returns a list (of dictionaries) of parsed TObjTable instances.
+    Each TObjTable output (instance) is processed into single TObjTable object.
+    Returns a list of parsed TObjTable instances.
     """
 
     print("=====  Parsing file '%s' content  ======================================" % str(filepath))
@@ -69,10 +82,15 @@ def parse_file(filepath,stats=False,debug=False) :
         line = next(file)
         while line :
             if not within :
-                if check_start(line,file) :
+                is_start,note = check_start(line,file,hook)
+                if is_start :
                     if debug : print(' --- Start found!')
                     within = True
                     newInstance = TObjectTable()
+
+                    if note is not None :
+                        newInstance.note = note
+
                     line = next(file)
 
             if within :

@@ -47,6 +47,7 @@ class TObjectTable :
     def __init__(self) :
         self.inst = dict()
         self.total = TObjectEntry('Total')
+        self.note = None
 
     def __del__(self) :
         self.inst.clear()
@@ -55,7 +56,7 @@ class TObjectTable :
         return "TObjectTable()"
 
     def __str__(self) :
-        return str(self.total)
+        return str(self.total) + " " + str(self.note)
 
     # NB: namedtuples are immutable
     # def __setitem__(self,key,value) :
@@ -152,6 +153,7 @@ class TObjectTable :
         keys_diff = keys_latter.symmetric_difference(keys_orig)
 
         new_table = TObjectTable()
+        new_table.note = str(table.note) + " / " + str(self.note)
 
         # looping over intersection of the keys of the two Tables to subtract its entries
         for key in keys_inter :
