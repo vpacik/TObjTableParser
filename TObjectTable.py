@@ -1,7 +1,11 @@
 from collections import namedtuple
 
 
+# ==============================================================================
+# Single TObject entry from TObjectTable
 TObjectEntry = namedtuple("TObjectEntry", ['object','countTot','countHeap','sizeSingle','sizeTot','sizeHeap'] ,verbose=False)
+TObjectEntry.__new__.__defaults__ = (0,) * len(TObjectEntry._fields) # defaults setting
+
 """
 single TObject entry from TObjectTable
 """
@@ -15,7 +19,7 @@ class TObjectTable :
 
     def __init__(self) :
         self.inst = dict()
-        self.total = TObjectEntry('Total',0,0,0,0,0)
+        self.total = TObjectEntry('Total')
 
     def __del__(self) :
         self.inst.clear()
