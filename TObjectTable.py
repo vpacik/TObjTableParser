@@ -26,14 +26,16 @@ class TObjectTable :
     def __str__(self) :
         return str(self.total)
 
-
+    # NB: namedtuples are immutable
     # def __setitem__(self,key,value) :
         # self.inst.__setitem__(key,value)
 
     def __missing__(self,key) :
-        self.inst.__missing__(key)
+        return TObjectEntry(object=key,countTot=None,countHeap=None,sizeTot=None,sizeHeap=None,sizeSingle=None)
 
     def __getitem__(self,key) :
+        if key not in self.inst :
+            return self.__missing__(key)
         return self.inst.__getitem__(key)
 
     def __delitem__(self,key) :
