@@ -39,6 +39,20 @@ def subtract_entries(first, second) :
     return TObjectEntry(object=object,countTot=countTot,countHeap=countHeap,sizeTot=sizeTot,sizeHeap=sizeHeap,sizeSingle=sizeSingle)
 
 # ==============================================================================
+def diff(first,second) :
+    """
+    Makes a diff TObjTable out of two TObjectTablesselfself.
+    See TObjectTable::diff() for details.
+    """
+    if not isinstance(first, TObjectTable) :
+        raise TypeError("First is not TObjTable")
+
+    if not isinstance(second, TObjectTable) :
+        raise TypeError("Second is not TObjTable")
+
+    return first.diff(second)
+
+# ==============================================================================
 class TObjectTable :
     """
     Implementation of single instance of TObjectTable
