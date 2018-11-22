@@ -30,7 +30,9 @@ def check_start(line,file,hook=None) :
         if not line.startswith(str(hook)) :
             return False, None
 
+        # removing 'hook' string from note
         note = line.strip()
+        note = note[len(hook):]
         line = next(file)
 
     if not line.startswith('Object statistics') :
