@@ -88,11 +88,14 @@ class TObjectTable :
         """
         return len(self.inst)
 
-    def list(self) :
+    def list(self,nozeros=True) :
         """
         List all the TObjectEntries in a Table
         """
         for key,obj in self.inst.items() :
+            if nozeros and obj.countTot == 0 :
+                continue
+
             print(obj)
 
     def append(self,key,value) :
