@@ -41,7 +41,7 @@ def subtract_entries(first, second) :
 # ==============================================================================
 def diff(first,second) :
     """
-    Makes a diff TObjTable out of two TObjectTablesselfself.
+    Makes a diff TObjTable out of two TObjectTable entries (second-first).
     See TObjectTable::diff() for details.
     """
     if not isinstance(first, TObjectTable) :
