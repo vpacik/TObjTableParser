@@ -18,9 +18,12 @@ print("###### Parser ######")
 # filepath = "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/gridTest/stdout"
 
 filepaths = [
-    "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_0",
-    "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_100",
-    "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_full"
+    # "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_0",
+    # "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_100",
+    # "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out/out_old/out_gridtest_wCor_all_100",
+    # "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_100"
+    "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out/out_3/out_gridtest_wCor_all_100",
+    "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out/out_3/out_gridtest_wCorQAweight_all_100"
 ]
 
 frames = []
@@ -53,7 +56,7 @@ for path in filepaths :
 f, axes = plt.subplots(1, 2, sharey=True, sharex=True, figsize=(4, 4))
 sns.scatterplot(x='index', y='sizeHeap',data=frames[0],hue='notes',ax=axes[0])
 sns.scatterplot(x='index', y='sizeHeap',data=frames[1],hue='notes',ax=axes[1])
-sns.scatterplot(x='index', y='sizeHeap',data=frames[2],hue='notes',ax=axes[2])
+# sns.scatterplot(x='index', y='sizeHeap',data=frames[2],hue='notes',ax=axes[2])
 
 # # making diffs
 # list_diffs = []
