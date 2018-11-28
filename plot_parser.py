@@ -50,7 +50,7 @@ for path in filepaths :
 
     frames.append(df)
 
-f, axes = plt.subplots(1, 3, sharey=True, figsize=(6, 4))
+f, axes = plt.subplots(1, 2, sharey=True, sharex=True, figsize=(4, 4))
 sns.scatterplot(x='index', y='sizeHeap',data=frames[0],hue='notes',ax=axes[0])
 sns.scatterplot(x='index', y='sizeHeap',data=frames[1],hue='notes',ax=axes[1])
 sns.scatterplot(x='index', y='sizeHeap',data=frames[2],hue='notes',ax=axes[2])
