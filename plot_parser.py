@@ -9,26 +9,16 @@ from parser import *
 gDebug = False
 
 print("###### Parser ######")
-# filepath = "test/single.txt"
-# filepath = "test/out"
-# filepath = "test/out_perEvent_10"
-# filepath = "test/out_perEvent_100"
-# filepath = "test/out_hook_all_20"
-# filepath = "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_full"
-# filepath = "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/gridTest/stdout"
 
 filepaths = [
-    "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_0",
-    "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_100",
-    "/Users/vpacik/Codes/ALICE/Flow/uniFlow/class/misc/testMem/out_gridtest_wCor_all_full"
+    "test/single.txt"
 ]
 
 frames = []
 
 for path in filepaths :
     # parsing raw input
-    # instances = parse_file(filepath,stats=False)
-    instances = parse_file(path,stats=False,hook="TObjectTable::")
+    instances = parse_file(path,stats=False)
 
     x = [ i for i in range(0,len(instances)) ]
     list_instances_total = [ i.total for i in instances ]
@@ -50,10 +40,8 @@ for path in filepaths :
 
     frames.append(df)
 
-f, axes = plt.subplots(1, 2, sharey=True, sharex=True, figsize=(4, 4))
-sns.scatterplot(x='index', y='sizeHeap',data=frames[0],hue='notes',ax=axes[0])
-sns.scatterplot(x='index', y='sizeHeap',data=frames[1],hue='notes',ax=axes[1])
-sns.scatterplot(x='index', y='sizeHeap',data=frames[2],hue='notes',ax=axes[2])
+f, axes = plt.subplots(1, 1, sharey=True, sharex=True, figsize=(4, 4))
+sns.scatterplot(x='index', y='sizeHeap',data=frames[0],hue='notes',ax=axes)
 
 # # making diffs
 # list_diffs = []
